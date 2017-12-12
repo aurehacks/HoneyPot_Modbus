@@ -1,1 +1,23 @@
 version: '0.1'
+services: 
+  rsyslog:
+    build: ./docker_rsyslog  
+    ports:
+      - "514:514"
+  pymodbus:
+    build: ./docker_PyModbus 
+    ports:
+      - "502:5020"
+  elasticsearch:
+    image: "library/elasticsearch"  
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  logstash:
+    image: "library/logstash"  
+    ports:
+      - "5444:5444"
+  kibana:
+    image: "library/kibana"  
+    ports:
+      - "5601:5601"
